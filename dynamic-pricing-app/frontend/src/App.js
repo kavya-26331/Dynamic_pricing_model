@@ -59,7 +59,8 @@ function App() {
 
     try {
       const payload = preparePayload();
-      const res = await axios.post("http://localhost:8000/predict", payload);
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+      const res = await axios.post(`${API_URL}/predict`, payload);
       setPrice(res.data.predicted_price);
     } catch (err) {
       setError("❌ Failed to fetch prediction. Make sure the backend server is running.");
